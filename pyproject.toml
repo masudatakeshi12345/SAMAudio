@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "samaudio"
+version = "0.1.0"
+description = "Speaker enrollment, diarization, and meeting transcription pipeline."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "pydub>=0.25.1",
+  "soundfile>=0.12.1",
+  "torch>=2.2",
+  "torchaudio>=2.2",
+  "pyannote.audio>=3.3.1",
+  "speechbrain>=1.0.0",
+  "faster-whisper>=1.0.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+samaudio = "samaudio.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
