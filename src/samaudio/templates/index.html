@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAMAudio Web</title>
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">SAMAudio</p>
+          <h1>会議の音声から<br />誰が何を話したかを可視化する</h1>
+          <p class="lead">
+            話者の音声サンプルを登録し、会議音声をアップロードすると、
+            発話ごとの話者推定と文字起こしをブラウザで確認できます。
+          </p>
+        </div>
+        <div class="hero-note">
+          <p>事前登録</p>
+          <strong>声のサンプル</strong>
+          <p>会議処理</p>
+          <strong>話者分離 + 照合 + 文字起こし</strong>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <div class="card-head">
+            <h2>話者登録</h2>
+            <span id="speaker-count" class="pill">0 speakers</span>
+          </div>
+          <form id="speaker-form" class="stack">
+            <label>
+              話者ID
+              <input name="speaker_id" type="text" placeholder="sato" required />
+            </label>
+            <label>
+              表示名
+              <input name="name" type="text" placeholder="佐藤" required />
+            </label>
+            <label>
+              音声サンプル
+              <input name="files" type="file" accept="audio/*" multiple required />
+            </label>
+            <button type="submit">登録する</button>
+          </form>
+          <div id="speaker-feedback" class="feedback"></div>
+          <div id="speaker-list" class="list"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h2>会議解析</h2>
+            <span class="pill accent">HF_TOKEN が必要</span>
+          </div>
+          <form id="meeting-form" class="stack">
+            <label>
+              会議音声
+              <input name="file" type="file" accept="audio/*" required />
+            </label>
+            <label>
+              言語
+              <input name="language" type="text" value="ja" />
+            </label>
+            <button type="submit">解析を開始</button>
+          </form>
+          <div id="meeting-feedback" class="feedback"></div>
+          <div id="job-status" class="job-status"></div>
+        </article>
+      </section>
+
+      <section class="card reports">
+        <div class="card-head">
+          <h2>解析レポート</h2>
+          <button id="refresh-reports" class="ghost" type="button">更新</button>
+        </div>
+        <div id="reports-list" class="reports-list"></div>
+      </section>
+    </main>
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
